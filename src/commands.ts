@@ -37,7 +37,7 @@ export async function handleYtDownload(
     const cookiesPath = join(import.meta.dir, "..", "cookies.txt");
     const cookiesFile = Bun.file(cookiesPath);
     const cookiesArgs = (await cookiesFile.exists()) ? ["--cookies", cookiesPath] : [];
-    await Bun.$`yt-dlp ${cookiesArgs} -f ${"bestvideo[height<=480][ext=mp4]+bestaudio[ext=m4a]/best[height<=480][ext=mp4]/best[height<=480]"} --merge-output-format mp4 -o ${outputTemplate} ${url}`;
+    await Bun.$`yt-dlp ${cookiesArgs} -f ${"bestvideo+bestaudio/best"} --merge-output-format mp4 -o ${outputTemplate} ${url}`;
 
     const glob = new Bun.Glob("*");
     const files = await Array.fromAsync(glob.scan(tempDir));

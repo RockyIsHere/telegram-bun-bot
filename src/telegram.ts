@@ -1,4 +1,4 @@
-const BOT_TOKEN = process.env.BOT_TOKEN!;
+const BOT_TOKEN = Bun.env.BOT_TOKEN!;
 const TELEGRAM_API = `https://api.telegram.org/bot${BOT_TOKEN}`;
 
 export async function sendMessage(chatId: number, text: string): Promise<void> {

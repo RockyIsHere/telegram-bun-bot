@@ -9,8 +9,10 @@ bun install
 To run:
 
 ```bash
-bun run index.ts
+bun run src/server.ts
+ngrok http 3000
 ```
 
 This project was created using `bun init` in bun v1.3.8. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+
 # telegram-bun-bot

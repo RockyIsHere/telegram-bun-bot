@@ -1,5 +1,10 @@
 import type { TelegramUpdate } from "./types";
-import { handleStart, handleHelp, handleYtDownload, handleDefault } from "./commands";
+import {
+  handleStart,
+  handleHelp,
+  handleYtDownload,
+  handleDefault,
+} from "./commands";
 
 type CommandHandler = (chatId: number, text: string) => Promise<void>;
 
@@ -14,8 +19,10 @@ function parseCommand(text: string): string | null {
   return command in commands ? command : null;
 }
 
+const port = Number(process.env.PORT) || 8080;
+
 Bun.serve({
-  port: Number(process.env.PORT) || 3001,
+  port,
 
   async fetch(req: Request): Promise<Response> {
     const url = new URL(req.url);
@@ -52,3 +59,5 @@ Bun.serve({
     }
   },
 });
+
+console.log(`Server started on port ${port}`);
