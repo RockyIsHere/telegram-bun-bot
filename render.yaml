@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: bun-telegram-bot
+    runtime: docker
+    region: singapore
+    plan: free
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
