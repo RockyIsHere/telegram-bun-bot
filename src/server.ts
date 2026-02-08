@@ -3,6 +3,7 @@ import {
   handleStart,
   handleHelp,
   handleYtDownload,
+  handleDriveSearch,
   handleDefault,
 } from "./commands";
 
@@ -48,6 +49,8 @@ Bun.serve({
       const command = parseCommand(text);
       if (command) {
         await commands[command]!(chatId, text);
+      } else if (text.startsWith("@")) {
+        await handleDriveSearch(chatId, text);
       } else {
         await handleDefault(chatId, text);
       }
